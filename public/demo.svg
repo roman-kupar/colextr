@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="316" viewBox="0 0 600 316" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#22233a"/>
+      <stop offset="1" stop-color="#121324"/>
+    </linearGradient>
+  </defs>
+
+  <!-- window -->
+  <rect width="600" height="316" rx="12" fill="url(#bg)"/>
+  <rect x="0.5" y="0.5" width="599" height="315" rx="11.5" fill="none" stroke="#ffffff" stroke-opacity="0.12"/>
+  <circle cx="22" cy="20" r="6" fill="#ff5f57"/>
+  <circle cx="42" cy="20" r="6" fill="#febc2e"/>
+  <circle cx="62" cy="20" r="6" fill="#28c840"/>
+
+  <!-- command -->
+  <text x="24" y="66" fill="#6dffbe">$</text>
+  <text x="42" y="66" fill="#e6e7f2">colextr github.com -n 6</text>
+  <text x="24" y="96" fill="#8a8ca8">6 colors from https://github.com/ (20 stylesheets)</text>
+
+  <!-- rows: swatch, hex, rgb, hsl, count -->
+  <g fill="#e6e7f2">
+    <rect x="24" y="116" width="34" height="18" rx="3" fill="#ffffff"/>
+    <text x="74" y="130">#ffffff</text><text x="160" y="130">rgb(255, 255, 255)</text><text x="346" y="130">hsl(0, 0%, 100%)</text><text x="560" y="130" text-anchor="end" fill="#8a8ca8">241×</text>
+
+    <rect x="24" y="146" width="34" height="18" rx="3" fill="#59636e"/>
+    <text x="74" y="160">#59636e</text><text x="160" y="160">rgb(89, 99, 110)</text><text x="346" y="160">hsl(211, 11%, 39%)</text><text x="560" y="160" text-anchor="end" fill="#8a8ca8">122×</text>
+
+    <rect x="24" y="176" width="34" height="18" rx="3" fill="#a7bbad"/>
+    <text x="74" y="190">#a7bbad</text><text x="160" y="190">rgb(167, 187, 173)</text><text x="346" y="190">hsl(138, 13%, 69%)</text><text x="560" y="190" text-anchor="end" fill="#8a8ca8">103×</text>
+
+    <rect x="24" y="206" width="34" height="18" rx="3" fill="#d1d9e0"/>
+    <text x="74" y="220">#d1d9e0</text><text x="160" y="220">rgb(209, 217, 224)</text><text x="346" y="220">hsl(208, 19%, 85%)</text><text x="560" y="220" text-anchor="end" fill="#8a8ca8">94×</text>
+
+    <rect x="24" y="236" width="34" height="18" rx="3" fill="#0969da"/>
+    <text x="74" y="250">#0969da</text><text x="160" y="250">rgb(9, 105, 218)</text><text x="346" y="250">hsl(212, 92%, 45%)</text><text x="560" y="250" text-anchor="end" fill="#8a8ca8">75×</text>
+
+    <rect x="24" y="266" width="34" height="18" rx="3" fill="#08872b"/>
+    <text x="74" y="280">#08872b</text><text x="160" y="280">rgb(8, 135, 43)</text><text x="346" y="280">hsl(137, 89%, 28%)</text><text x="560" y="280" text-anchor="end" fill="#8a8ca8">64×</text>
+  </g>
+</svg>

@@ -1,29 +1,37 @@
-# colextr
+<p align="center">
+  <img src="public/icon-sparkle.svg" width="128" height="128" alt="colextr icon">
+</p>
 
-Extract the color palette of any website, right from your terminal.
+<h1 align="center">colextr</h1>
 
-```
-$ colextr github.com -n 6
-6 colors from https://github.com/ (20 stylesheets)
+<p align="center">
+  <strong>Extract the color palette of any website, right from your terminal.</strong>
+</p>
 
-████  #ffffff   rgb(255, 255, 255)   hsl(0, 0%, 100%)     241×
-████  #59636e   rgb(89, 99, 110)     hsl(211, 11%, 39%)   122×
-████  #a7bbad   rgb(167, 187, 173)   hsl(138, 13%, 69%)   103×
-████  #d1d9e0   rgb(209, 217, 224)   hsl(208, 19%, 85%)    94×
-████  #0969da   rgb(9, 105, 218)     hsl(212, 92%, 45%)    75×
-████  #08872b   rgb(8, 135, 43)      hsl(137, 89%, 28%)    64×
-```
+<p align="center">
+  <img alt="Node.js ≥ 18.3" src="https://img.shields.io/badge/node-%E2%89%A5%2018.3-7cff6b?style=flat-square&logo=nodedotjs&logoColor=white&labelColor=22233a">
+  <img alt="Zero dependencies" src="https://img.shields.io/badge/dependencies-0-22e6ff?style=flat-square&labelColor=22233a">
+  <img alt="Formats: hex, rgb, hsl, json, css" src="https://img.shields.io/badge/formats-hex%20·%20rgb%20·%20hsl%20·%20json%20·%20css-ff3dcb?style=flat-square&labelColor=22233a">
+  <img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-9d7bff?style=flat-square&labelColor=22233a">
+</p>
 
-In a terminal, each `████` is a real swatch of that color.
+<p align="center">
+  <img src="public/demo.svg" width="600" alt="colextr github.com -n 6 prints six colors, each with a color swatch, hex, rgb, hsl and usage count">
+</p>
 
-- **Zero dependencies.** Plain Node.js, about 450 lines you can read in one sitting.
-- **Modern CSS.** Understands hex, `rgb()`, `hsl()`, `oklch()` and `oklab()` in both legacy and modern syntax.
-- **Ranked by usage.** Colors are sorted by how often the site uses them, so the brand colors float to the top.
-- **Pipe-friendly.** Export as hex, rgb, hsl, JSON or CSS custom properties.
+## Features
+
+|                       |                                                                                          |
+| --------------------- | ---------------------------------------------------------------------------------------- |
+| **Zero dependencies** | Plain Node.js, about 450 lines you can read in one sitting.                              |
+| **Modern CSS**        | Understands hex, `rgb()`, `hsl()`, `oklch()` and `oklab()`, legacy and modern syntax.    |
+| **Ranked by usage**   | Colors are sorted by how often the site uses them, so brand colors float to the top.     |
+| **Real swatches**     | Every color is drawn as a block of that color in any truecolor terminal.                 |
+| **Pipe-friendly**     | Export as hex, rgb, hsl, JSON or CSS custom properties. Piped output stays clean.        |
 
 ## Install
 
-Requires Node.js 18.3 or newer.
+Requires [Node.js](https://nodejs.org) 18.3 or newer.
 
 ```sh
 git clone https://github.com/<your-username>/colextr.git
@@ -44,33 +52,32 @@ colextr <url> [options]
   -v, --version         Show the version
 ```
 
-The `https://` prefix is optional.
+The `https://` prefix is optional, so `colextr github.com` just works.
 
 ### Export formats
 
+| Format   | Example output                                                      |
+| -------- | ------------------------------------------------------------------- |
+| `pretty` | swatch, hex, rgb, hsl and count in an aligned table (default)       |
+| `hex`    | `#0969da`                                                           |
+| `rgb`    | `rgb(9, 105, 218)`                                                  |
+| `hsl`    | `hsl(212, 92%, 45%)`                                                |
+| `json`   | `[{ "hex": "#0969da", "rgb": "…", "hsl": "…", "count": 75 }]`       |
+| `css`    | `:root { --color-1: #0969da; }`                                     |
+
 ```sh
-colextr stripe.com -n 3 -f hex
-# #000000
-# #ffffff
-# #ff8769
-
-colextr stripe.com -n 2 -f css > palette.css
-# :root {
-#   --color-1: #000000;
-#   --color-2: #ffffff;
-# }
-
-colextr stripe.com -f json > palette.json
-# [{ "hex": "#000000", "rgb": "rgb(0, 0, 0)", "hsl": "hsl(0, 0%, 0%)", "count": 64 }, ...]
+colextr stripe.com -n 5 -f hex          # quick list
+colextr stripe.com -f css > palette.css # drop-in CSS variables
+colextr stripe.com -f json | jq '.[0]'  # feed other tools
 ```
 
 When the output is piped or redirected, swatches are left out automatically and the summary line goes to stderr, so files stay clean. Swatches are also disabled by `--no-color` or the [`NO_COLOR`](https://no-color.org) environment variable.
 
 ## How it works
 
-1. Download the page and every stylesheet it links to, following `@import`s.
-2. Collect CSS written into the page itself: `<style>` blocks, `style=""` attributes, inline SVG `fill`/`stroke` and the `theme-color` meta tag.
-3. Scan CSS declaration values for colors (selectors and comments are skipped), convert each one to sRGB, and count how often each appears.
+1. **Fetch:** download the page and every stylesheet it links to, following `@import`s.
+2. **Collect:** gather CSS written into the page itself: `<style>` blocks, `style=""` attributes, inline SVG `fill`/`stroke` and the `theme-color` meta tag.
+3. **Extract:** scan CSS declaration values for colors (selectors and comments are skipped), convert each one to sRGB and count how often each appears.
 
 ```
 bin/colextr.js    command-line interface
