@@ -1,0 +1,29 @@
+{
+  "name": "colextr",
+  "version": "0.1.0",
+  "description": "Extract the color palette of any website from your terminal.",
+  "type": "module",
+  "bin": {
+    "colextr": "bin/colextr.js"
+  },
+  "files": [
+    "bin",
+    "src"
+  ],
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18.3"
+  },
+  "keywords": [
+    "color",
+    "palette",
+    "css",
+    "cli",
+    "design",
+    "extract"
+  ],
+  "author": "Roman",
+  "license": "MIT"
+}
