@@ -98,7 +98,8 @@ function hue(token) {
 function finalize(rgb, alpha) {
   if (![...rgb, alpha].every(Number.isFinite)) return null;
   const [r, g, b] = rgb.map((v) => Math.round(clamp(v, 0, 255)));
-  const a = Math.round(clamp(alpha, 0, 1) * 100) / 100;
+  // Three decimals keep every 8-bit alpha value exact when converting back to hex.
+  const a = Math.round(clamp(alpha, 0, 1) * 1000) / 1000;
   return { r, g, b, a };
 }
 
